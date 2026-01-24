@@ -17,15 +17,65 @@ html, body {
   scrollbar-gutter: stable;
 }
 
-/* EVE Dark Tactical Aesthetics */
-.tactical-border {
-  border: 1px solid rgba(52, 211, 153, 0.2); /* eve-emerald/20 */
+/* Tactical Background Layers */
+.bg-grid-tactical {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(52, 211, 153, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(52, 211, 153, 0.05) 1px, transparent 1px);
 }
 
-.neural-weave {
-  background-image: linear-gradient(rgba(31, 41, 55, 0.2) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(31, 41, 55, 0.2) 1px, transparent 1px);
-  background-size: 25px 25px;
+.scanlines {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.1) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+}
+
+.scanline-move {
+  width: 100%;
+  height: 100px;
+  z-index: 10;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(52, 211, 153, 0.05) 50%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  opacity: 0.1;
+  position: absolute;
+  bottom: 100%;
+  animation: scanline 8s linear infinite;
+}
+
+@keyframes scanline {
+  0% {
+    bottom: 100%;
+  }
+  100% {
+    bottom: -100px;
+  }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spin-slow-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 30s linear infinite;
+}
+
+.animate-spin-slow-reverse {
+  animation: spin-slow-reverse 20s linear infinite;
 }
 
 /* Singularity Gate (The Void Fade) */

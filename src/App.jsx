@@ -1,157 +1,191 @@
-import React from 'react'
-import { Terminal, Shield, Activity, Database, ChevronRight, Zap, Box, Compass, Cpu } from 'lucide-react'
+import React, { useState, useEffect } from 'react'
+import { Terminal, Shield, Activity, Database, ChevronRight, Zap, Box, Compass, Cpu, Globe2, CircleDollarSign, Map, ShieldCheck, ExternalLink, TrendingUp, Award, Coins } from 'lucide-react'
+
+const PHRASES = [
+  "SYNCHRONIZING WITH TRANQUILITY CLUSTER...",
+  "BYPASSING CONCORD TRAFFIC CONTROL PROTOCOLS...",
+  "OPTIMIZING NEURAL INTERFACE PARAMETERS...",
+  "WARP DRIVE ACTIVE. DESTINATION: MAXIMUM PROFIT.",
+  "MINING THE SALT OF A THOUSAND LOSERS.",
+  "SCANNING FOR CLOAKED CYNO SIGNALS...",
+  "DOCKING REQUEST GRANTED. WELCOME PILOT.",
+  "POD FLUID AT NOMINAL TEMPERATURES.",
+  "CALCULATING ESCAPE VELOCITY FROM DEBT.",
+  "NEURAL TICKET: ISK IS THE ONLY TRUE GOD.",
+  "STATION SPINNING: 100% OPERATIONAL EFFICIENCY.",
+  "UPDATING THREAT HEURISTICS AND SPI METRICS...",
+  "THE EVE GATE COLLAPSED. WE REMAIN UNBOWED.",
+  "MARKET DATA RELAY: JITA IV-4 IS OVERCROWDED.",
+  "LOGISTICS WIN WARS. ISK WINS EVERYTHING ELSE.",
+  "EVE INTELLIGENCE: YOUR SECOND BRAIN IN EDEN.",
+]
+
+const TerminalTicker = () => {
+  const [index, setIndex] = useState(0)
+  const [displayText, setDisplayText] = useState('')
+
+  useEffect(() => {
+    let timeout
+    const phrase = PHRASES[index]
+    let i = 0
+
+    const materialize = () => {
+      if (i <= phrase.length) {
+        const noise = "!@#$%^&*()_+<>?".charAt(Math.floor(Math.random() * 15))
+        const current = phrase.substring(0, i)
+        setDisplayText(i < phrase.length ? current + noise : current)
+        timeout = setTimeout(() => { i++; materialize() }, 30)
+      } else {
+        timeout = setTimeout(() => {
+          setDisplayText('')
+          setIndex((prev) => (prev + 1) % PHRASES.length)
+        }, 4000)
+      }
+    }
+
+    materialize()
+    return () => clearTimeout(timeout)
+  }, [index])
+
+  return (
+    <div className="w-full bg-black/40 border-y border-eve-emerald/10 py-1.5 px-4 flex items-center justify-center overflow-hidden h-8">
+      <div className="font-mono text-[10px] text-eve-emerald/80 tracking-widest uppercase truncate text-center">
+        {displayText}
+        <span className="w-1.5 h-3 bg-eve-emerald/50 inline-block ml-1 animate-pulse" />
+      </div>
+    </div>
+  )
+}
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-deep-space text-gray-400 neural-weave overflow-x-hidden">
-      {/* HUD HEADER LINE (Doctrine IV.2) */}
-      <header className="h-10 flex items-center justify-between px-4 border-b border-gray-800/50 bg-primary-sidebar/80 backdrop-blur-sm sticky top-0 z-50 shadow-[0_10px_20px_rgba(0,0,0,0.5)]">
+    <div className="min-h-screen flex flex-col font-sans bg-deep-space text-gray-400 relative overflow-hidden">
+      {/* Background FX */}
+      <div className="absolute inset-0 bg-grid-tactical opacity-20 pointer-events-none" />
+      <div className="absolute inset-0 scanlines opacity-30 pointer-events-none" />
+      <div className="scanline-move" />
+      
+      {/* HUD HEADER */}
+      <header className="h-10 flex items-center justify-between px-4 border-b border-gray-800/50 bg-primary-sidebar/80 backdrop-blur-sm sticky top-0 z-50 shadow-lg">
         <div className="flex items-center space-x-3">
-          <div className="flex items-center space-x-1.5">
-            <div className="w-1.5 h-1.5 bg-eve-emerald rounded-full animate-pulse shadow-[0_0_8px_#34d399]" />
-            <span className="panel-title !text-white !tracking-widest">UID // CORE TERMINAL</span>
-          </div>
-          <div className="h-4 border-r border-gray-800/50 hidden sm:block" />
-          <div className="hidden sm:flex items-center space-x-4 text-[9px] uppercase font-black tracking-widest text-gray-600">
-            <span className="hover:text-eve-emerald transition-colors cursor-pointer">SDE.SYNCHRONIZED</span>
-            <span className="hover:text-eve-emerald transition-colors cursor-pointer">ESI.ONLINE</span>
-            <span className="hover:text-eve-emerald transition-colors cursor-pointer">THREAT.MONITOR</span>
-          </div>
+          <div className="w-1.5 h-1.5 bg-eve-emerald rounded-full animate-pulse shadow-[0_0_8px_#34d399]" />
+          <span className="panel-title !text-white !tracking-widest">EVE // UNIFIED INTELLIGENCE</span>
         </div>
-        
-        <div className="flex items-center space-x-6">
-          <nav className="hidden md:flex space-x-6 text-[10px] uppercase font-bold tracking-widest">
-            <a href="#intel" className="hover:text-eve-emerald transition-colors">Intelligence</a>
-            <a href="#pulse" className="hover:text-eve-emerald transition-colors">Strategic Pulse</a>
-            <a href="#docs" className="hover:text-eve-emerald transition-colors">The Archive</a>
-          </nav>
-          <button className="h-6 px-3 border border-eve-emerald/30 bg-eve-emerald/5 text-eve-emerald text-[9px] uppercase font-black tracking-widest hover:bg-eve-emerald/20 transition-all cursor-pointer">
-            ACCESS_KEY.REQUIRED
-          </button>
-        </div>
+        <nav className="hidden md:flex space-x-8 text-[10px] uppercase font-black tracking-tactical text-gray-500">
+          <a href="#intel" className="hover:text-eve-emerald transition-colors">Intelligence</a>
+          <a href="#pulse" className="hover:text-eve-emerald transition-colors">Strategic Pulse</a>
+          <a href="#docs" className="hover:text-eve-emerald transition-colors">Archive</a>
+        </nav>
+        <button className="h-6 px-3 border border-eve-emerald/30 bg-eve-emerald/5 text-eve-emerald text-[9px] uppercase font-black tracking-widest hover:bg-eve-emerald/20">
+          ESTABLISH_NEURAL_LINK
+        </button>
       </header>
 
-      <main className="flex-grow flex flex-col relative">
-        {/* HERO SECTION - TACTICAL BRIEFING STYLE */}
-        <section className="relative py-32 border-b border-gray-800/50">
-          <div className="max-w-7xl mx-auto px-4 relative z-10">
-            <div className="inline-block mb-4">
-              <span className="uppercase font-black tracking-[0.4em] text-xs text-eve-emerald border-b border-eve-emerald/30 pb-1">
-                EVE UNIFIED INTELLIGENCE
-              </span>
+      <main className="flex-grow z-10">
+        {/* HERO AREA with Circular Orbit (1:1 from Login) */}
+        <section className="relative pt-24 pb-12 border-b border-gray-800/50 flex flex-col items-center overflow-hidden">
+           <div className="relative w-64 h-64 flex items-center justify-center mb-12">
+            <div className="absolute inset-0 border border-eve-emerald/10 rounded-full animate-spin-slow" />
+            <div className="absolute inset-4 border border-dashed border-eve-emerald/20 rounded-full animate-spin-slow-reverse" />
+            <div className="relative z-10 text-eve-emerald drop-shadow-[0_0_20px_rgba(52,211,153,0.4)]">
+              <Globe2 size={160} strokeWidth={0.5} />
             </div>
-            
-            <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-white leading-[0.85] mb-8">
-              TACTICAL <br />
-              <span className="text-gray-800">DECISION</span> <br />
-              SUPPORT
-            </h1>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-end">
-              <div>
-                <p className="text-gray-500 text-lg leading-relaxed max-w-xl font-medium mb-8">
-                  A high-density intelligence engine designed to consolidate Market, Spatial, and Industrial telemetry into a single unified interface. Engineered for multi-character sovereignty.
-                </p>
-                <div className="flex space-x-4">
-                  <button className="h-10 px-6 bg-eve-emerald text-deep-space font-black uppercase text-[10px] tracking-widest hover:bg-white transition-colors flex items-center">
-                    VIEW_SPECIFICATIONS <ChevronRight className="ml-2 w-4 h-4" />
-                  </button>
-                  <button className="h-10 px-6 border border-gray-800 text-gray-400 font-black uppercase text-[10px] tracking-widest hover:bg-gray-800 transition-colors">
-                    GIT_ARCHIVE
-                  </button>
-                </div>
-              </div>
-              
-              <div className="hidden md:block">
-                <div className="p-4 border border-gray-800 bg-panel-surface shadow-2xl relative overflow-hidden">
-                  <div className="absolute top-0 right-0 p-2 opacity-10">
-                    <Zap className="w-24 h-24 text-eve-emerald" />
-                  </div>
-                  <div className="relative z-10">
-                    <div className="panel-title mb-4">PLATFORM.TELEMETRY</div>
-                    <div className="space-y-3">
-                      {[
-                        { label: "Market Latency", val: "0.042ms", color: "text-eve-emerald" },
-                        { label: "SDE Authority", val: "STABLE", color: "text-eve-emerald" },
-                        { label: "Neural Mapping", val: "ACTIVE", color: "text-eve-emerald" },
-                        { label: "System Pressure", val: "LOW_SIGNAL", color: "text-scc-amber" }
-                      ].map((stat, i) => (
-                        <div key={i} className="flex justify-between items-center border-b border-gray-800/50 pb-1">
-                          <span className="uppercase text-[9px] font-bold tracking-wider text-gray-600">{stat.label}</span>
-                          <span className={`font-mono text-[10px] font-bold ${stat.color}`}>{stat.val}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div className="singularity-gate">
-            <div className="event-horizon animate-pulse" />
-          </div>
-        </section>
-
-        {/* DOMAIN MATRIX (Doctrine IV.2) */}
-        <section id="intel" className="py-24 bg-primary-sidebar/30">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="panel-title mb-12">INTELLIGENCE.DOMAINS</div>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-              {[
-                { icon: Database, title: "SDE Authority", desc: "Local Static Data Export anchoring for zero-latency asset resolution and station identification." },
-                { icon: Activity, title: "Market Signals", desc: "Heuristic price resolution and recursive Bill of Materials tracking with character skill modifiers." },
-                { icon: Compass, title: "Spatial Intel", desc: "EVEeye-inspired universe mapping with live traffic overlays and System Pressure modeling." },
-                { icon: Shield, title: "Threat Analysis", desc: "zKill-driven pilot evaluation and conflict density heatmaps across multiple security sectors." }
-              ].map((domain, i) => (
-                <div key={i} className="p-6 border border-gray-800 bg-deep-space hover:border-eve-emerald/30 transition-all group relative overflow-hidden">
-                  <div className="absolute -right-4 -top-4 opacity-[0.03] group-hover:opacity-[0.07] transition-opacity">
-                    <domain.icon className="w-24 h-24" />
-                  </div>
-                  <domain.icon className="w-6 h-6 text-eve-emerald mb-4" />
-                  <h3 className="uppercase font-black tracking-widest text-[11px] text-white mb-3">{domain.title}</h3>
-                  <p className="text-[10px] leading-relaxed text-gray-500 font-medium">{domain.desc}</p>
+            {/* Orbital Flairs */}
+            <div className="absolute inset-0 animate-spin-slow opacity-60">
+              {[CircleDollarSign, Activity, Map, Zap, Crosshair].map((Icon, i) => (
+                <div key={i} className="absolute top-1/2 left-1/2" style={{ transform: `rotate(${i * 72}deg) translateY(-140px) rotate(-${i * 72}deg)` }}>
+                  <Icon size={20} className="text-eve-emerald" />
                 </div>
               ))}
             </div>
           </div>
+
+          <div className="text-center max-w-4xl px-4">
+            <h1 className="text-4xl md:text-6xl font-black tracking-tactical text-white uppercase mb-4">
+              UNIFIED <span className="text-eve-emerald">STRATEGIC</span> COMMAND
+            </h1>
+            <p className="text-gray-500 text-sm md:text-base font-medium max-w-2xl mx-auto mb-12 tracking-wide uppercase">
+              A military-grade decision support platform consolidating Market, Spatial, and Industrial telemetry into a single tactical interface.
+            </p>
+          </div>
+          
+          <TerminalTicker />
         </section>
 
-        {/* STRATEGIC PULSE */}
-        <section id="pulse" className="py-24 border-t border-gray-800/50">
+        {/* DATA PREVIEW (1:1 from Wallet Overview) */}
+        <section className="py-20 bg-primary-sidebar/20 relative border-b border-gray-800/50">
           <div className="max-w-7xl mx-auto px-4">
-            <div className="flex justify-between items-end mb-12">
-              <div>
-                <div className="panel-title mb-2">STRATEGIC.PULSE</div>
-                <p className="text-[10px] text-gray-600 uppercase font-bold tracking-widest">Latest tactical synchronization reports.</p>
-              </div>
-              <a href="Dev_Blog.md" className="text-eve-emerald text-[9px] uppercase font-black tracking-[0.2em] hover:underline">ACCESS_ARCHIVE_FULL</a>
-            </div>
+            <div className="panel-title mb-12 text-center">PORTFOLIO.NET_WORTH // LIVE_SIMULATION</div>
             
-            <div className="space-y-4">
-              <div className="p-6 border border-gray-800 bg-panel-surface group cursor-pointer hover:bg-gray-800/20 transition-colors">
-                <div className="flex justify-between items-start mb-4">
-                  <span className="font-mono text-[10px] text-eve-emerald">STAMP // 2026-01-24</span>
-                  <div className="flex items-center space-x-2">
-                    <span className="w-1.5 h-1.5 bg-eve-emerald rounded-full animate-pulse" />
-                    <span className="uppercase text-[8px] font-black tracking-widest text-eve-emerald">LATEST_SIGNAL</span>
+            <div className="bg-[#0a0a0a] border border-gray-800 p-8 shadow-2xl relative overflow-hidden group hover:border-eve-emerald/40 transition-all">
+              <div className="absolute -top-4 -right-4 transition-all duration-200 rotate-12 pointer-events-none opacity-5 group-hover:opacity-20">
+                <CircleDollarSign size={200} className="text-eve-emerald" />
+              </div>
+
+              <div className="flex flex-col md:flex-row items-center justify-center gap-12 mb-12 relative z-10">
+                <div className="text-center flex-1">
+                  <div className="flex items-center justify-center gap-2 text-scc-amber opacity-80 mb-2">
+                    <span className="text-[9px] font-black uppercase tracking-widest">PLEX Vault</span>
+                    <Coins size={18} />
+                  </div>
+                  <div className="text-xl font-bold font-mono text-white">4,250,000,000 <span className="text-[10px] text-gray-600 ml-1 font-black">ISK</span></div>
+                </div>
+
+                <div className="text-center flex-[2] border-x border-gray-800/30 px-8">
+                  <div className="text-xs text-eve-emerald font-black uppercase tracking-tactical mb-2">Portfolio Net Worth</div>
+                  <div className="text-5xl md:text-7xl font-bold font-mono tracking-tight text-white leading-none">
+                    124,402,851,204.00
                   </div>
                 </div>
-                <h3 className="text-lg font-black text-white uppercase tracking-tight mb-2">Tactical Reorganization Phase III</h3>
-                <p className="text-xs text-gray-500 leading-relaxed mb-6 max-w-2xl">
-                  Platform architecture successfully transitioned to a three-tier deployment model. Isolated core intelligence from public-facing assets while maintaining high-fidelity synchronization through the management bridge.
-                </p>
-                <div className="flex items-center text-eve-emerald text-[9px] font-black tracking-widest">
-                  DECRYPT_LOG <ChevronRight className="ml-1 w-3 h-3" />
+
+                <div className="text-center flex-1">
+                  <div className="flex items-center justify-center gap-2 text-naval-blue opacity-80 mb-2">
+                    <Award size={18} />
+                    <span className="text-[9px] font-black uppercase tracking-widest">Total LP</span>
+                  </div>
+                  <div className="text-xl font-bold font-mono text-white">1,402,000,000 <span className="text-[10px] text-gray-600 ml-1 font-black">ISK</span></div>
                 </div>
+              </div>
+
+              <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+                {[
+                  { label: 'Liquid', val: '42,402,100,204.00' },
+                  { label: 'Escrow', val: '12,000,000,000.00' },
+                  { label: 'Sells', val: '8,402,000,000.00' },
+                  { label: 'Assets', val: '58,402,000,000.00' },
+                  { label: 'Industry', val: '3,196,751,000.00' }
+                ].map((s, i) => (
+                  <div key={i} className="bg-[#111] p-3 border border-gray-800 flex flex-col items-center justify-center text-center">
+                    <div className="text-[9px] text-gray-600 uppercase font-black tracking-widest mb-1">{s.label}</div>
+                    <div className="text-[11px] font-mono text-gray-400">{s.val} <span className="text-[8px] opacity-50 ml-0.5 uppercase">ISK</span></div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </section>
+
+        {/* DOMAIN SECTIONS (Lucide based, tactical dark) */}
+        <section id="intel" className="py-24 max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { icon: TrendingUp, title: "Market Signals", desc: "Heuristic price resolution and recursive Bill of Materials tracking with character skill modifiers." },
+              { icon: Compass, title: "Spatial Intel", desc: "Universe mapping with live traffic overlays and System Pressure Index modeling." },
+              { icon: ShieldCheck, title: "Threat Awareness", desc: "zKill-driven pilot evaluation and conflict density heatmaps across multiple security sectors." }
+            ].map((domain, i) => (
+              <div key={i} className="p-8 border border-gray-800 bg-panel-surface hover:border-eve-emerald/30 transition-all group">
+                <domain.icon className="w-10 h-10 text-eve-emerald mb-6 group-hover:scale-110 transition-transform" />
+                <h3 className="uppercase font-black tracking-widest text-xs text-white mb-4">{domain.title}</h3>
+                <p className="text-[11px] leading-relaxed text-gray-500 font-medium uppercase tracking-tight">{domain.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
       </main>
 
-      {/* FOOTER TICKER (Doctrine V.3) */}
-      <footer className="h-12 border-t border-gray-800/50 bg-primary-sidebar/80 backdrop-blur-sm shadow-[0_-10px_20px_rgba(0,0,0,0.5)]">
+      {/* TACTICAL FOOTER */}
+      <footer className="h-12 border-t border-gray-800/50 bg-primary-sidebar/80 backdrop-blur-sm shadow-2xl relative z-20">
         <div className="max-w-7xl mx-auto h-full px-4 flex items-center justify-between text-[9px] uppercase font-black tracking-widest text-gray-600">
           <div className="flex items-center space-x-6">
             <span>&copy; 2026 EVE_UNIFIED_INTELLIGENCE</span>
@@ -161,8 +195,9 @@ function App() {
             </div>
           </div>
           <div className="flex space-x-6">
-            <span className="hover:text-white transition-colors cursor-pointer">PRIVACY.PROTOCOL</span>
-            <span className="hover:text-white transition-colors cursor-pointer">EULA.COMPLIANCE</span>
+             <a href="https://zzeve.com/" target="_blank" rel="noreferrer" className="hover:text-eve-emerald transition-colors flex items-center gap-2">
+                <ExternalLink size={10} /> PROJECT_NET
+            </a>
             <span>CCP_GAMES // EVE_ONLINE</span>
           </div>
         </div>
