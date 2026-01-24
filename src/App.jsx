@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Terminal, Shield, Activity, Database, ChevronRight, Zap, Box, Compass, Cpu, Globe2, CircleDollarSign, Map, ShieldCheck, ExternalLink, TrendingUp, Award, Coins, Crosshair, Calendar, Factory, BookOpen, UserSearch } from 'lucide-react'
+import { Terminal, Shield, Activity, Database, ChevronRight, Zap, Box, Compass, Cpu, Globe2, CircleDollarSign, Map, ShieldCheck, ExternalLink, TrendingUp, Award, Coins, Crosshair, Calendar, Factory, BookOpen, UserSearch, Camera, Lock } from 'lucide-react'
 
 const PHRASES = [
   "SYNCHRONIZING WITH TRANQUILITY CLUSTER...",
@@ -58,6 +58,11 @@ const TerminalTicker = () => {
 }
 
 function App() {
+  // Force scroll to top on mount
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const domains = [
     {
       id: 'financial',
@@ -122,14 +127,14 @@ function App() {
       date: "2026-01-24",
       chapter: "MASTER_SYNC",
       title: "Consolidated Deployment: Foundation to Synthesis",
-      body: "Strategic summary of platform evolution from initial authorization to current architecture. This update marks the completion of the foundational intelligence layer.",
+      body: "Strategic summary of platform evolution from initial authorization to current three-tier architecture. This update marks the completion of the foundational intelligence layer.",
       points: [
         "Project Genesis: Established core FastAPI/React architecture",
         "SDE Authority: Integrated local Static Data Export for zero-latency asset resolution",
         "Financial Module: Deployment of 'Wallet Standard' portfolio analysis",
         "Industrial Expansion: Bill of Materials solver and blueprint intelligence",
-        "Tactical Reorganization: Migration to isolated engine/public/management layers",
-        "Temporal Coordination: Time Intelligence module and ESI event ingestion"
+        "Multi-Character Synthesis: Atomic state syncing and contextual character sovereignty",
+        "Tactical Reorganization: Migration to isolated engine/public/management layers"
       ]
     }
   ]
@@ -152,7 +157,8 @@ function App() {
         </div>
         <nav className="hidden md:flex space-x-8 text-[10px] uppercase font-black tracking-tactical text-gray-500">
           <a href="#intel" className="hover:text-eve-emerald transition-colors">Intelligence</a>
-          <a href="#pulse" className="hover:text-eve-emerald transition-colors">Strategic Pulse</a>
+          <a href="#visuals" className="hover:text-eve-emerald transition-colors">Visuals</a>
+          <a href="#pulse" className="hover:text-eve-emerald transition-colors">Pulse</a>
           <a href="#docs" className="hover:text-eve-emerald transition-colors">Archive</a>
         </nav>
         <button className="h-6 px-3 border border-eve-emerald/30 bg-eve-emerald/5 text-eve-emerald text-[9px] uppercase font-black tracking-widest hover:bg-eve-emerald/20 transition-all">
@@ -161,7 +167,7 @@ function App() {
       </header>
 
       <main className="flex-grow z-10">
-        {/* HERO AREA with Circular Orbit */}
+        {/* HERO AREA */}
         <section className="relative pt-24 pb-12 border-b border-gray-800/50 flex flex-col items-center overflow-hidden">
            <div className="relative w-64 h-64 flex items-center justify-center mb-12">
             <div className="absolute inset-0 border border-eve-emerald/10 rounded-full animate-spin-slow" />
@@ -270,6 +276,34 @@ function App() {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* SYSTEM SCREENSHOTS (NEW SECTION) */}
+        <section id="visuals" className="py-24 border-b border-gray-800/50 bg-black/20">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="panel-title mb-12 flex items-center space-x-2">
+              <Camera size={14} className="text-eve-emerald" />
+              <span>SYSTEM.VISUALS // TACTICAL_INTERFACE</span>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="aspect-video bg-[#0c0c0c] border border-gray-800 flex flex-col items-center justify-center relative overflow-hidden group">
+                  <div className="absolute inset-0 bg-grid-tactical opacity-10 pointer-events-none" />
+                  <Lock className="w-8 h-8 text-gray-800 group-hover:text-eve-emerald/20 transition-colors mb-4" />
+                  <div className="text-[10px] font-black tracking-tactical text-gray-700 uppercase">Signal_Locked</div>
+                  <div className="text-[8px] font-mono text-gray-800 mt-2">ENCRYPTED_FEED_{i}</div>
+                  
+                  {/* Decorative corner accents */}
+                  <div className="absolute top-2 left-2 w-4 h-4 border-t border-l border-gray-800 group-hover:border-eve-emerald/30 transition-colors" />
+                  <div className="absolute bottom-2 right-2 w-4 h-4 border-b border-r border-gray-800 group-hover:border-eve-emerald/30 transition-colors" />
+                </div>
+              ))}
+            </div>
+            <div className="mt-8 text-center text-[9px] font-black tracking-[0.4em] text-gray-700 uppercase">
+              // DATA_FEED_PENDING_SYNCHRONIZATION //
             </div>
           </div>
         </section>
