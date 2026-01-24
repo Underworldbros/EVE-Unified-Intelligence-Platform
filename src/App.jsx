@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Terminal, Shield, Activity, Database, ChevronRight, Zap, Box, Compass, Cpu, Globe2, CircleDollarSign, Map, ShieldCheck, ExternalLink, TrendingUp, Award, Coins, Crosshair } from 'lucide-react'
+import { Terminal, Shield, Activity, Database, ChevronRight, Zap, Box, Compass, Cpu, Globe2, CircleDollarSign, Map, ShieldCheck, ExternalLink, TrendingUp, Award, Coins, Crosshair, Calendar, Factory, BookOpen, UserSearch } from 'lucide-react'
 
 const PHRASES = [
   "SYNCHRONIZING WITH TRANQUILITY CLUSTER...",
@@ -58,6 +58,92 @@ const TerminalTicker = () => {
 }
 
 function App() {
+  const domains = [
+    {
+      id: 'financial',
+      icon: Coins,
+      title: "Financial Intelligence",
+      tagline: "ISK-CENTRIC OUTCOMES",
+      desc: "Consolidated market activity, wallet tracking, and asset valuation. Defines the economic core of New Eden operations.",
+      details: ["Market Browser & Arbitrage", "Wallet Flow Analysis", "Portfolio Net Worth", "Automated Appraisal"]
+    },
+    {
+      id: 'activity',
+      icon: BookOpen,
+      title: "Activity Journal",
+      tagline: "OPERATIONAL TRUTH",
+      desc: "Source of truth for activity execution. Captures what happens in space—runs, sites, and encounters—for longitudinal analysis.",
+      details: ["Structured Run Logging", "Loot & Spoils Section", "Fuzzy Universe Linking", "Performance Metrics"]
+    },
+    {
+      id: 'map',
+      icon: Compass,
+      title: "Spatial Intelligence",
+      tagline: "SITUATIONAL AWARENESS",
+      desc: "The primary situational surface. Unifies universe topology with live activity, event pressure, and user-generated intel.",
+      details: ["Dynamic Traffic Overlays", "System Pressure Index", "Route Intelligence", "User Annotations"]
+    },
+    {
+      id: 'threat',
+      icon: UserSearch,
+      title: "Intelligence & Conflict",
+      tagline: "THREAT HEURISTICS",
+      desc: "Analyzes player behavior and combat activity. Correlates destruction events with market behavior and regional risk.",
+      details: ["Player/Corp Lookup", "D-Scan Intelligence", "Market Spike Correlation", "Killboard Heuristics"]
+    },
+    {
+      id: 'character',
+      icon: Cpu,
+      title: "Character Management",
+      tagline: "CAPABILITY MODELING",
+      desc: "Authoritative source of character capability. Mirrors in-game fitting tools while projecting skill-dependent outcomes.",
+      details: ["Skill Training Planner", "Implant & Clone Awareness", "Ship Fitting Engine", "Alpha/Omega Enforcement"]
+    },
+    {
+      id: 'industry',
+      icon: Factory,
+      title: "Industry & Supply Chain",
+      tagline: "OPERATIONAL CONTROL",
+      desc: "Operational center for manufacturing and logistics. Manages the physical flow of assets from input to extraction.",
+      details: ["Active Job Management", "Production Chain Solver", "Blueprint Library", "PI Planetary Command"]
+    },
+    {
+      id: 'time',
+      icon: Calendar,
+      title: "Time Intelligence",
+      tagline: "TEMPORAL COORDINATION",
+      desc: "Aligns in-game events, schedules, and milestones. Ensures temporal context is maintained across all planning phases.",
+      details: ["ESI Event Ingestion", "Milestone Tracking", "EVE/Local Time Conversion", "Subscription Monitoring"]
+    }
+  ]
+
+  const updates = [
+    {
+      date: "2026-01-24",
+      chapter: "8",
+      title: "Full SDE Hydration & Schema Expansion",
+      body: "The core engine has achieved a new state of operational readiness. Current deployment focuses on full SDE hydration and schema expansion to enhance platform stability and intelligence throughput.",
+      points: [
+        "Full SDE hydration and schema expansion",
+        "Integrate SDE data into Industry, Assets, and Map APIs",
+        "Phase III UI integration and blueprint intelligence refinement",
+        "Finalize production solver financials and UI polish",
+        "Implement three-tier reorganization and management layer"
+      ]
+    },
+    {
+      date: "2026-01-24",
+      chapter: "7",
+      title: "Tactical Reorganization",
+      body: "Platform architecture successfully transitioned to a three-tier deployment model. Isolated core intelligence from public-facing assets.",
+      points: [
+        "Established the 'EVE Dark' Public Landing Page",
+        "Consolidated Design Documentation for community review",
+        "Initialized local management protocols"
+      ]
+    }
+  ]
+
   return (
     <div className="min-h-screen flex flex-col font-sans bg-deep-space text-gray-400 relative overflow-hidden">
       {/* Background FX */}
@@ -76,13 +162,13 @@ function App() {
           <a href="#pulse" className="hover:text-eve-emerald transition-colors">Strategic Pulse</a>
           <a href="#docs" className="hover:text-eve-emerald transition-colors">Archive</a>
         </nav>
-        <button className="h-6 px-3 border border-eve-emerald/30 bg-eve-emerald/5 text-eve-emerald text-[9px] uppercase font-black tracking-widest hover:bg-eve-emerald/20">
+        <button className="h-6 px-3 border border-eve-emerald/30 bg-eve-emerald/5 text-eve-emerald text-[9px] uppercase font-black tracking-widest hover:bg-eve-emerald/20 transition-all">
           ESTABLISH_NEURAL_LINK
         </button>
       </header>
 
       <main className="flex-grow z-10">
-        {/* HERO AREA with Circular Orbit (1:1 from Login) */}
+        {/* HERO AREA with Circular Orbit */}
         <section className="relative pt-24 pb-12 border-b border-gray-800/50 flex flex-col items-center overflow-hidden">
            <div className="relative w-64 h-64 flex items-center justify-center mb-12">
             <div className="absolute inset-0 border border-eve-emerald/10 rounded-full animate-spin-slow" />
@@ -102,86 +188,115 @@ function App() {
 
           <div className="text-center max-w-4xl px-4">
             <h1 className="text-4xl md:text-6xl font-black tracking-tactical text-white uppercase mb-4">
-              UNIFIED <span className="text-eve-emerald">STRATEGIC</span> COMMAND
+              UNIFIED <span className="text-eve-emerald">STRATEGIC</span> PLATFORM
             </h1>
             <p className="text-gray-500 text-sm md:text-base font-medium max-w-2xl mx-auto mb-12 tracking-wide uppercase">
-              A military-grade decision support platform consolidating Market, Spatial, and Industrial telemetry into a single tactical interface.
+              A high-density intelligence engine designed to consolidate Market, Spatial, and Industrial telemetry into a single unified interface.
             </p>
           </div>
           
           <TerminalTicker />
         </section>
 
-        {/* DATA PREVIEW (1:1 from Wallet Overview) */}
-        <section className="py-20 bg-primary-sidebar/20 relative border-b border-gray-800/50">
+        {/* DOMAIN MATRIX GRID */}
+        <section id="intel" className="py-24 bg-primary-sidebar/20 border-b border-gray-800/50">
           <div className="max-w-7xl mx-auto px-4">
-            <div className="panel-title mb-12 text-center">PORTFOLIO.NET_WORTH // LIVE_SIMULATION</div>
-            
-            <div className="bg-[#0a0a0a] border border-gray-800 p-8 shadow-2xl relative overflow-hidden group hover:border-eve-emerald/40 transition-all">
-              <div className="absolute -top-4 -right-4 transition-all duration-200 rotate-12 pointer-events-none opacity-5 group-hover:opacity-20">
-                <CircleDollarSign size={200} className="text-eve-emerald" />
-              </div>
-
-              <div className="flex flex-col md:flex-row items-center justify-center gap-12 mb-12 relative z-10">
-                <div className="text-center flex-1">
-                  <div className="flex items-center justify-center gap-2 text-scc-amber opacity-80 mb-2">
-                    <span className="text-[9px] font-black uppercase tracking-widest">PLEX Vault</span>
-                    <Coins size={18} />
+            <div className="panel-title mb-12">INTELLIGENCE.DOMAINS // FUNCTIONAL_SCOPE</div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+              {domains.map((domain, i) => (
+                <div key={i} className="p-6 border border-gray-800 bg-deep-space hover:border-eve-emerald/30 transition-all group relative overflow-hidden flex flex-col h-full shadow-lg">
+                  <div className="absolute -right-4 -top-4 opacity-[0.03] group-hover:opacity-[0.07] transition-opacity">
+                    <domain.icon size={120} />
                   </div>
-                  <div className="text-xl font-bold font-mono text-white">4,250,000,000 <span className="text-[10px] text-gray-600 ml-1 font-black">ISK</span></div>
+                  <div className="flex items-center justify-between mb-4">
+                    <domain.icon className="w-6 h-6 text-eve-emerald" />
+                    <span className="text-[8px] font-black tracking-[0.2em] text-gray-600 uppercase border border-gray-800 px-1.5 py-0.5">{domain.tagline}</span>
+                  </div>
+                  <h3 className="uppercase font-black tracking-widest text-[11px] text-white mb-3">{domain.title}</h3>
+                  <p className="text-[10px] leading-relaxed text-gray-500 font-medium uppercase tracking-tight mb-6 flex-grow">{domain.desc}</p>
+                  <div className="space-y-1.5 pt-4 border-t border-gray-800/50">
+                    {domain.details.map((detail, j) => (
+                      <div key={j} className="flex items-center space-x-2">
+                        <div className="w-1 h-1 bg-eve-emerald/40 rounded-full" />
+                        <span className="text-[9px] font-bold text-gray-600 uppercase tracking-widest">{detail}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-
-                <div className="text-center flex-[2] border-x border-gray-800/30 px-8">
-                  <div className="text-xs text-eve-emerald font-black uppercase tracking-tactical mb-2">Portfolio Net Worth</div>
-                  <div className="text-5xl md:text-7xl font-bold font-mono tracking-tight text-white leading-none">
-                    124,402,851,204.00
-                  </div>
-                </div>
-
-                <div className="text-center flex-1">
-                  <div className="flex items-center justify-center gap-2 text-naval-blue opacity-80 mb-2">
-                    <Award size={18} />
-                    <span className="text-[9px] font-black uppercase tracking-widest">Total LP</span>
-                  </div>
-                  <div className="text-xl font-bold font-mono text-white">1,402,000,000 <span className="text-[10px] text-gray-600 ml-1 font-black">ISK</span></div>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-                {[
-                  { label: 'Liquid', val: '42,402,100,204.00' },
-                  { label: 'Escrow', val: '12,000,000,000.00' },
-                  { label: 'Sells', val: '8,402,000,000.00' },
-                  { label: 'Assets', val: '58,402,000,000.00' },
-                  { label: 'Industry', val: '3,196,751,000.00' }
-                ].map((s, i) => (
-                  <div key={i} className="bg-[#111] p-3 border border-gray-800 flex flex-col items-center justify-center text-center">
-                    <div className="text-[9px] text-gray-600 uppercase font-black tracking-widest mb-1">{s.label}</div>
-                    <div className="text-[11px] font-mono text-gray-400">{s.val} <span className="text-[8px] opacity-50 ml-0.5 uppercase">ISK</span></div>
-                  </div>
-                ))}
-              </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* DOMAIN SECTIONS (Lucide based, tactical dark) */}
-        <section id="intel" className="py-24 max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { icon: TrendingUp, title: "Market Signals", desc: "Heuristic price resolution and recursive Bill of Materials tracking with character skill modifiers." },
-              { icon: Compass, title: "Spatial Intel", desc: "Universe mapping with live traffic overlays and System Pressure Index modeling." },
-              { icon: ShieldCheck, title: "Threat Awareness", desc: "zKill-driven pilot evaluation and conflict density heatmaps across multiple security sectors." }
-            ].map((domain, i) => (
-              <div key={i} className="p-8 border border-gray-800 bg-panel-surface hover:border-eve-emerald/30 transition-all group">
-                <domain.icon className="w-10 h-10 text-eve-emerald mb-6 group-hover:scale-110 transition-transform" />
-                <h3 className="uppercase font-black tracking-widest text-xs text-white mb-4">{domain.title}</h3>
-                <p className="text-[11px] leading-relaxed text-gray-500 font-medium uppercase tracking-tight">{domain.desc}</p>
+        {/* STRATEGIC PULSE UPDATES */}
+        <section id="pulse" className="py-24 border-b border-gray-800/50">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="flex justify-between items-end mb-12">
+              <div>
+                <div className="panel-title mb-2">STRATEGIC.PULSE // DEPLOYMENT_LOG</div>
+                <p className="text-[10px] text-gray-600 uppercase font-bold tracking-widest">Authorized synchronization reports from the development core.</p>
               </div>
-            ))}
+              <a href="Dev_Blog.md" className="text-eve-emerald text-[9px] uppercase font-black tracking-[0.2em] hover:underline">ACCESS_ARCHIVE_FULL</a>
+            </div>
+            
+            <div className="grid grid-cols-1 gap-6">
+              {updates.map((update, i) => (
+                <div key={i} className="p-8 border border-gray-800 bg-panel-surface hover:bg-gray-800/10 transition-all group relative overflow-hidden shadow-2xl">
+                  <div className="absolute right-0 top-0 p-4 font-mono text-[40px] font-black text-white/[0.02] group-hover:text-white/[0.05] transition-colors leading-none">
+                    CH_{update.chapter}
+                  </div>
+                  <div className="flex justify-between items-start mb-6">
+                    <div className="flex flex-col">
+                      <span className="font-mono text-[10px] text-eve-emerald mb-1">STAMP // {update.date}</span>
+                      <h3 className="text-xl font-black text-white uppercase tracking-tight">{update.title}</h3>
+                    </div>
+                    {i === 0 && (
+                      <div className="flex items-center space-x-2 px-2 py-1 bg-eve-emerald/10 border border-eve-emerald/30">
+                        <span className="w-1.5 h-1.5 bg-eve-emerald rounded-full animate-pulse" />
+                        <span className="uppercase text-[8px] font-black tracking-widest text-eve-emerald">LATEST_SIGNAL</span>
+                      </div>
+                    )}
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div>
+                      <p className="text-xs text-gray-400 leading-relaxed font-medium uppercase tracking-tight italic border-l-2 border-eve-emerald/20 pl-4 py-1">
+                        {update.body}
+                      </p>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="text-[9px] font-black text-gray-600 uppercase tracking-widest mb-3">SYNCHRONIZATION_POINTS:</div>
+                      {update.points.map((point, j) => (
+                        <div key={j} className="flex items-start space-x-3 group/point">
+                          <ChevronRight size={10} className="text-eve-emerald mt-0.5 group-hover/point:translate-x-1 transition-transform" />
+                          <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">{point}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
+        {/* REPOSITORY ARCHIVE */}
+        <section id="docs" className="py-24 bg-primary-sidebar/10">
+          <div className="max-w-7xl mx-auto px-4 text-center">
+            <div className="panel-title mb-8">REPOSITORY.ARCHIVE</div>
+            <h2 className="text-3xl font-black text-white uppercase tracking-tactical mb-8 leading-none">
+              PUBLIC DOCUMENTATION <br />
+              <span className="text-gray-700">& ARCHITECTURAL SPECS</span>
+            </h2>
+            <div className="flex flex-col md:flex-row justify-center items-center gap-4 mt-12">
+              <button className="h-12 px-8 bg-white text-deep-space font-black uppercase text-xs tracking-[0.3em] hover:bg-eve-emerald transition-colors flex items-center">
+                BROWSE_DOCUMENTS <ExternalLink className="ml-3 w-4 h-4" />
+              </button>
+              <button className="h-12 px-8 border border-gray-800 text-gray-500 font-black uppercase text-xs tracking-[0.3em] hover:bg-gray-800 transition-colors">
+                GITHUB_SOURCE
+              </button>
+            </div>
+          </div>
+        </section>
       </main>
 
       {/* TACTICAL FOOTER */}
@@ -195,8 +310,8 @@ function App() {
             </div>
           </div>
           <div className="flex space-x-6">
-             <a href="https://zzeve.com/" target="_blank" rel="noreferrer" className="hover:text-eve-emerald transition-colors flex items-center gap-2">
-                <ExternalLink size={10} /> PROJECT_NET
+             <a href="https://github.com/Underworldbros/EVE-UIP-Public" target="_blank" rel="noreferrer" className="hover:text-eve-emerald transition-colors flex items-center gap-2">
+                <ExternalLink size={10} /> PUBLIC_REPOSITORY
             </a>
             <span>CCP_GAMES // EVE_ONLINE</span>
           </div>
