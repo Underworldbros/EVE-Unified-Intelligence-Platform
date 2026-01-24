@@ -7,14 +7,22 @@ export default {
   theme: {
     extend: {
       colors: {
-        'eve-black': '#050505',
-        'eve-gray': '#121212',
-        'eve-gold': '#c4a000',
-        'eve-blue': '#0080ff',
+        'deep-space': '#0a0a0a',
+        'control-pane': '#0c0c0c',
+        'primary-sidebar': '#050505',
+        'panel-surface': '#111111',
+        'eve-emerald': '#34d399',
+        'critical-red': '#A90B0B',
+        'tactical-red': '#f87171',
+        'scc-amber': '#fbbf24',
+        'naval-blue': '#60a5fa',
       },
       fontFamily: {
         'mono': ['JetBrains Mono', 'monospace'],
         'sans': ['Inter', 'sans-serif'],
+      },
+      letterSpacing: {
+        'tactical': '0.4em',
       }
     },
   },

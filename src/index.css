@@ -11,17 +11,71 @@ html, body {
   padding: 0;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #050505; /* eve-black */
-  color: white;
+  background-color: #0a0a0a; /* deep-space */
+  color: #9ca3af; /* neutral-grey */
+  font-family: 'Inter', sans-serif;
+  scrollbar-gutter: stable;
 }
 
 /* EVE Dark Tactical Aesthetics */
 .tactical-border {
-  border: 1px solid rgba(196, 160, 0, 0.2);
+  border: 1px solid rgba(52, 211, 153, 0.2); /* eve-emerald/20 */
 }
 
 .neural-weave {
-  background-image: linear-gradient(rgba(18, 18, 18, 0.8) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(18, 18, 18, 0.8) 1px, transparent 1px);
+  background-image: linear-gradient(rgba(31, 41, 55, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31, 41, 55, 0.2) 1px, transparent 1px);
   background-size: 25px 25px;
+}
+
+/* Singularity Gate (The Void Fade) */
+.singularity-gate {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: linear-gradient(transparent, #0a0a0a);
+  pointer-events: none;
+}
+
+.event-horizon {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: rgba(52, 211, 153, 0.3); /* eve-emerald/30 */
+  box-shadow: 0 0 10px rgba(52, 211, 153, 0.2);
+}
+
+/* Typography Overrides */
+.panel-title {
+  @apply uppercase font-black tracking-tactical text-[10px] text-gray-500;
+}
+
+.hero-isk {
+  @apply text-5xl font-bold tracking-tight text-white font-mono;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1f2937;
+  border: 4px solid transparent;
+  background-clip: padding-box;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(52, 211, 153, 0.3);
+  border: 4px solid transparent;
+  background-clip: padding-box;
 }
