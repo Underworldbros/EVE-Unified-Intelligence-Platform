@@ -280,7 +280,7 @@ function App() {
           </div>
         </section>
 
-        {/* SYSTEM SCREENSHOTS (NEW SECTION) */}
+        {/* SYSTEM SCREENSHOTS */}
         <section id="visuals" className="py-24 border-b border-gray-800/50 bg-black/20">
           <div className="max-w-7xl mx-auto px-4">
             <div className="panel-title mb-12 flex items-center space-x-2">
@@ -316,7 +316,6 @@ function App() {
                 <div className="panel-title mb-2">STRATEGIC.PULSE // DEPLOYMENT_LOG</div>
                 <p className="text-[10px] text-gray-600 uppercase font-bold tracking-widest">Authorized synchronization reports from the development core.</p>
               </div>
-              <a href="Dev_Blog.md" className="text-eve-emerald text-[9px] uppercase font-black tracking-[0.2em] hover:underline">ACCESS_ARCHIVE_FULL</a>
             </div>
             
             <div className="grid grid-cols-1 gap-6">
@@ -390,10 +389,12 @@ function App() {
             </div>
           </div>
           <div className="flex space-x-6">
-             <a href={repoUrl} target="_blank" rel="noreferrer" className="hover:text-eve-emerald transition-colors flex items-center gap-2">
+             <a href={repoUrl} target="_blank" rel="noreferrer" className="hover:text-eve-emerald transition-colors flex items-center gap-2 text-gray-600">
                 <ExternalLink size={10} /> PUBLIC_REPOSITORY
             </a>
-            <span>CCP_GAMES // EVE_ONLINE</span>
+            <a href="https://www.eveonline.com/" target="_blank" rel="noreferrer" className="hover:text-white transition-colors cursor-pointer text-gray-600">
+              CCP_GAMES // EVE_ONLINE
+            </a>
           </div>
         </div>
       </footer>
