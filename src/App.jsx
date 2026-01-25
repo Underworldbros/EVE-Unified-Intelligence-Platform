@@ -60,14 +60,22 @@ const TerminalTicker = () => {
 function App() {
   const [selectedImage, setSelectedImage] = useState(null);
 
-  // Force scroll to top on mount
+  // Definitive Scroll Lockout
   useEffect(() => {
+    // 1. Disable browser's internal scroll memory
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    
+    // 2. Clear URL hashes that cause jumps
     if (window.location.hash) {
       window.history.replaceState(null, null, window.location.pathname);
     }
-    const timer = setTimeout(() => {
-      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-    }, 100);
+
+    // 3. Immediate and secondary scroll reset
+    window.scrollTo(0, 0);
+    const timer = setTimeout(() => window.scrollTo(0, 0), 50);
+    
     return () => clearTimeout(timer);
   }, []);
 
